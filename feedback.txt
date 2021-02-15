@@ -8,6 +8,8 @@ generally
 - more comments in source code to link to text descriptions.
 - link mentioned classes in notebooks to quickly lookup their documentation.
 - ISOBaseGroove.to_profile wrap with pint to set default unit to "mm"?
+- use PEP8 in notebooks as well
+
 
 possible API/impl improvments
 -----------------------------
