@@ -12,7 +12,7 @@ class PointCloudTypeASDF(WeldxType):
     @classmethod
     def to_tree(cls, node: PointCloud, ctx):
         """
-        Convert an 'weldx.geometry.point_cloud' instance into YAML  representations.
+        Convert an 'weldx.geometry.point_cloud' instance into YAML representations.
 
         Parameters
         ----------
