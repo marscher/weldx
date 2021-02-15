@@ -444,9 +444,9 @@ class LocalCoordinateSystem:
 
         """
         if orientation is None:
-            orientation = np.array([[1, 0, 0], [0, 1, 0], [0, 0, 1]])
+            orientation = np.array(((1, 0, 0), (0, 1, 0), (0, 0, 1)))
         if coordinates is None:
-            coordinates = np.array([0, 0, 0])
+            coordinates = np.array((0, 0, 0))
 
         time, time_ref = _build_time_index(time, time_ref)
         orientation = self._build_orientation(orientation, time)
@@ -1742,7 +1742,7 @@ class CoordinateSystemManager:
         if not isinstance(lcs, LocalCoordinateSystem):
             raise TypeError(
                 "'local_coordinate_system' must be an instance of "
-                + "weldx.transformations.LocalCoordinateSystem"
+                "weldx.transformations.LocalCoordinateSystem"
             )
 
         if (
@@ -1756,7 +1756,7 @@ class CoordinateSystemManager:
                 )
             )
         ):
-            raise Exception(
+            raise RuntimeError(
                 "Inconsistent usage of reference times! If you didn't specify a "
                 "reference time for the CoordinateSystemManager, either all or "
                 "none of the added coordinate systems must have a reference time."
