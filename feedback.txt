@@ -1,0 +1,71 @@
+tutorial feedback
+=================
+
+generally
+---------
+
+- present more output of created objects.
+- more comments in source code to link to text descriptions.
+- link mentioned classes in notebooks to quickly lookup their documentation.
+- ISOBaseGroove.to_profile wrap with pint to set default unit to "mm"?
+
+possible API/impl improvments
+-----------------------------
+- think of having default units for scalar inputs (pint-wrapping-function), e.g. "mm" for lengths and "deegree" for angles.
+  This avoids the need for the users to wrap everything themselfs.
+- pandas seems to be used only for TimeDeltaIndex and Timestamp, 
+  shouldn't we consider to use stdlib features for this purpose and get rid of the pandas dependency?
+  I guess you've chosen these types for a good reason. Eventually it might be worth considering extracting these two classes into weldx.
+- _write_read_buffer is used publicly, but is a private function (I guess this can be public).
+
+- prefer tuples of lists (a bit faster, e.g. 7ns vs 50ns), but is neglectable.
+
+
+welding_example_01_basics
+-------------------------
+
+* get_groove(), too many arguments! 
+  why not have get_groove_V, get_groove_u functions only containing relevant arguments?
+  It seems overwhelming for users, to dig through all parameters to determine which are needed.
+  When we choose to have separate functions, we get required/optional parameters for free due to Python semantics.
+
+  Interpretation of the same argument depend on groove type, that's confusing at least.
+  Implementation-wise it is very elegant, but not so user-friendly (parameter checking on runtime, mapping of names/types etc.).
+
+* CoordinateSystemManager.add_cs() can be called multiple times with the same cs names. Is this intended?
+  # comment from src:
+            #  discuss: update and add functionality should be separated
+            #  why?   : to prevent errors. Misspelling of the system name might cause
+            #           unwanted updates or unwanted additions. Separate function can
+            #           catch that by knowing about the users intention.
+   I totally agree, that this should be separate methods!
+   
+ 
+ 
+groove_types_01
+---------------
+
+- add reference to iso-standard in text
+- plotting of all available groove types calls private method _create_test_grooves. This can be public too.
+- FFGroove plot is not a closed shape, e.g. left upper corner of big workpiece is not fully connected.
+
+
+
+measurement_example
+-------------------
+
+- "import weldx.measurement as msm" is a strange abbreviation :)
+- "import weldx.transformations as tf", tf is usually used to abbrivate tensor flow, so we should consider something else.
+- time type is now numpy datetime, what about using one time type all over the place?
+- weldx.asdf.tags.weldx.core.mathematical_expression import MathematicalExpression, why is a tag used as user-api?
+- The user has to create far too many objects, we should provide a factory.
+
+welding_example_02_weaving
+--------------------------
+
+- line 76ff:
+  # define the weld seam length in mm
+  seam_length = 150 # why is the unit implicit here, although the ctor of LinearHorizontalTraceSegment is not pint wrapped?
+  # create a linear trace segment a the complete weld seam trace
+  trace_segment = geo.LinearHorizontalTraceSegment(seam_length)
+- 
