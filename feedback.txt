@@ -9,18 +9,19 @@ generally
 - link mentioned classes in notebooks to quickly lookup their documentation.
 - ISOBaseGroove.to_profile wrap with pint to set default unit to "mm"?
 - use PEP8 in notebooks as well
+- cross-link notebooks (via markdown refs) where appropriate.
 
 
-possible API/impl improvments
+possible API/impl improvements
 -----------------------------
-- think of having default units for scalar inputs (pint-wrapping-function), e.g. "mm" for lengths and "deegree" for angles.
-  This avoids the need for the users to wrap everything themselfs.
+- think of having default units for scalar inputs (pint-wrapping-function), e.g. "mm" for lengths and "degree" for angles.
+  This avoids the need for the users to wrap everything themselves.
 - pandas seems to be used only for TimeDeltaIndex and Timestamp, 
   shouldn't we consider to use stdlib features for this purpose and get rid of the pandas dependency?
   I guess you've chosen these types for a good reason. Eventually it might be worth considering extracting these two classes into weldx.
 - _write_read_buffer is used publicly, but is a private function (I guess this can be public).
 
-- prefer tuples of lists (a bit faster, e.g. 7ns vs 50ns), but is neglectable.
+- prefer tuples of lists (a bit faster, e.g. 7ns vs 50ns), but is negligible.
 
 
 welding_example_01_basics
@@ -71,3 +72,39 @@ welding_example_02_weaving
   # create a linear trace segment a the complete weld seam trace
   trace_segment = geo.LinearHorizontalTraceSegment(seam_length)
 - 
+
+
+GMAW_process
+------------
+Describe whats going on. What things get defined etc.
+This seems like a practical example for the user, so it would be more insightful to explain how to attach measurements
+to the process (or at least link to the notebook explaining it).
+
+Showing the output of the serialization is somehow cool, but whats the benefit in a tutorial? Would users ever look at
+this? Writing it to a proper file, so people get an idea, what will be lying around on their filesystem seems more like a
+real world application.
+
+
+transformations_01_coordinate_systems
+-------------------------------------
+
+- Language is technical (users would not know what the difference between a constructor and a factory method is). We can
+  just omit that, and demonstrate the different behavior.
+
+- Users are asked to "install the corresponding extensions" during the tutorial. This should be done by us, so people can
+ focus on the actual task of understanding the tutorial.
+
+- We shouldn't put lots of code into the tutorials, if necessary we can hide it in a utility module alongside the notebooks.
+  This gets imported on top and used later, so it does not confuse the users later on.
+  Should be done, once the layout/content is final.
+
+- Legends (ref, parent, child etc.) in slide plots (really cool btw) hide the actual 3d grid, so one cannot see whats going on exactly.
+  Legend has to be placed outside of the grid. https://stackoverflow.com/questions/4700614/how-to-put-the-legend-out-of-the-plot
+
+- Practical question, is the user really asked to define lcs for the movements of the torch/robot, or can there be a way to
+  extract these information and convert it to weldx objects? This would greatly improve the acceptance of weldx, since
+  doing it manually seems tedious and error prone.
+
+- Ask users to learn xarray seems a bit overwhelming. We can be lucky if the know how to use NumPy.
+  Better link to to documentation of xarray wrapper funcs
+
