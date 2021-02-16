@@ -4,12 +4,14 @@ tutorial feedback
 generally
 ---------
 
+- introduction text prior first code cell.
 - present more output of created objects.
 - more comments in source code to link to text descriptions.
 - link mentioned classes in notebooks to quickly lookup their documentation.
 - ISOBaseGroove.to_profile wrap with pint to set default unit to "mm"?
 - use PEP8 in notebooks as well
 - cross-link notebooks (via markdown refs) where appropriate.
+- raise specialized exceptions, not plain base exceptions. This makes error handling easier (and understandable).
 
 
 possible API/impl improvements
@@ -100,6 +102,7 @@ transformations_01_coordinate_systems
 
 - Legends (ref, parent, child etc.) in slide plots (really cool btw) hide the actual 3d grid, so one cannot see whats going on exactly.
   Legend has to be placed outside of the grid. https://stackoverflow.com/questions/4700614/how-to-put-the-legend-out-of-the-plot
+  (I think this only happened when using widgets).
 
 - Practical question, is the user really asked to define lcs for the movements of the torch/robot, or can there be a way to
   extract these information and convert it to weldx objects? This would greatly improve the acceptance of weldx, since
@@ -108,3 +111,15 @@ transformations_01_coordinate_systems
 - Ask users to learn xarray seems a bit overwhelming. We can be lucky if the know how to use NumPy.
   Better link to to documentation of xarray wrapper funcs
 
+
+transformations_02_coordinate_system_manager
+--------------------------------------------
+
+- Do not Hint about hashable names for the CSM name, but enforce strings. This makes everybody's life easier.
+
+- CSM constructor has private arguments. This should be avoided.
+
+- With the manager is actually easy to create LCS, so why not introduce it earlier skipping some of the functionalities
+  of LCS in favour of explaining the managers features.
+
+- relabel() why a mapping, if two arguments (src, dst) can be used? Ensure the type is hashable? Just allow only str
