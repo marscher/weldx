@@ -6,6 +6,7 @@ generally
 
 - introduction text prior first code cell.
 - present more output of created objects.
+- %cd -q .. should be gone, when this is final, as it stores outputs (figures etc.) next to the source code.
 - more comments in source code to link to text descriptions.
 - link mentioned classes in notebooks to quickly lookup their documentation.
 - ISOBaseGroove.to_profile wrap with pint to set default unit to "mm"?
@@ -119,7 +120,16 @@ transformations_02_coordinate_system_manager
 
 - CSM constructor has private arguments. This should be avoided.
 
+- do not use assert in a tutorial, but show the actual result of the comparison (csm.transform_data(specimen_geometry_in_specimen, "specimen", "root") == specimen_geometry_in_root)
+
 - With the manager is actually easy to create LCS, so why not introduce it earlier skipping some of the functionalities
   of LCS in favour of explaining the managers features.
 
 - relabel() why a mapping, if two arguments (src, dst) can be used? Ensure the type is hashable? Just allow only str
+
+
+geometry_01_profiles
+--------------------
+
+- Defining custom types is a nice feature, but too complicated for the aspect of a tutorial. Eventually split the
+  programming example to an "expert"-level tutorial.
