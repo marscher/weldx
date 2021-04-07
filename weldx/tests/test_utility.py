@@ -584,7 +584,7 @@ def test_compare_nested(a, b, expected):
 
 @pytest.mark.usefixtures("single_pass_weld_asdf")
 class TestWeldxExampleCompareNested(unittest.TestCase):
-    """This case uses a real world example as it compares two nested ASDF trees.
+    """Test case of a real world example as it compares two nested ASDF trees.
 
     This includes cases of xarray.DataArrays, np.ndarrays and so forth.
     """
