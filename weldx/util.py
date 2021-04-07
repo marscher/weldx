@@ -1213,13 +1213,16 @@ class _Eq_compare_nested:
     }
 
     @staticmethod
-    def _compare(x, y):
+    def _compare_eq(x, y):
         if type(x) is not type(y):
             return False
         for types, func in _Eq_compare_nested.compare_funcs.items():
             if isinstance(x, types):
                 return func(x, y)
             return x == y
+
+    @staticmethod
+    def _compare_ops(x,y ):
 
     @staticmethod
     def _visit(p, k, v, b):
@@ -1232,12 +1235,12 @@ class _Eq_compare_nested:
         by raising a ValueError.
         """
         other_value = iterutils.get_path(b, p)[k]
-        if not _Eq_compare_nested._compare(v, other_value):
+        if not _Eq_compare_nested._compare_eq(v, other_value):
             raise ValueError
         return True
 
     @staticmethod
-    def compare_nested(a, b):
+    def compare_nested(a, b, op="eq"):
         """Deeply compares [nested] data structures combined of tuples, lists, dicts...
 
         Also compares non-nested data-structures.
@@ -1261,7 +1264,19 @@ class _Eq_compare_nested:
             When a or b is not a nested structure.
 
         """
-        visit = functools.partial(_Eq_compare_nested._visit, b=b)
+        import operator
+
+        funcs = {
+            "eq": operator.eq,
+            "ne": operator.ne,
+            "gt": operator.gt,
+        }
+        if op not in funcs.keys():
+            raise ValueError(
+                f"comparision method not supported: {op}. "
+                f"Choose one of {funcs.keys()}"
+            )
+        visit = functools.partial(_Eq_compare_nested._visit, b=b, op=funcs[op])
 
         try:
             iterutils.remap(a, visit=visit, reraise_visit=True)
