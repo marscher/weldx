@@ -324,19 +324,15 @@ class WeldxFile(UserDict):
         )
 
     def add_history_entry(self, change_desc: str, software: dict = None) -> None:
-        """Add an history_entry to the file.
+        """Add an history entry to the file.
 
         Parameters
         ----------
         change_desc :
             Description of the change made.
         software :
-            Optional software used to make the change.
-
-        See Also
-        --------
-        The software entry will be inferred from the constructor or, if not defined,
-        from `software_history_entry`.
+            Optional software used to make the change. If no software is given,
+            a default software entry will be used.
 
         """
         if software is None:
