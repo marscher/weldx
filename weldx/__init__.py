@@ -45,11 +45,14 @@ from weldx.welding.processes import GmawProcess
 from weldx.welding.groove.iso_9692_1 import get_groove
 
 __all__ = (
+    # classes:
     "ArcSegment",
     "CoordinateSystemManager",
     "Geometry",
     "GmawProcess",
     "LineSegment",
+    "MathematicalExpression",
+    "TimeSeries",
     "LocalCoordinateSystem",
     "Profile",
     "Q_",
@@ -57,13 +60,15 @@ __all__ = (
     "SpatialData",
     "Trace",
     "WeldxFile",
+    "WXRotation",
+    # modules:
     "asdf",
     "core",
     "geometry",
-    "get_groove",
     "get_groove",
     "measurement",
     "transformations",
     "util",
     "welding",
+    "__version__",
 )
