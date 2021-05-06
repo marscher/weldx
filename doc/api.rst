@@ -1,23 +1,55 @@
 API
 ===
 
+.. currentmodule:: weldx
+
 **Python modules**
 
 .. autosummary::
     :toctree: _autosummary
-    :caption: API Reference
+    :caption: Modules API reference
     :template: module-template.rst
     :recursive:
 
-    weldx.constants
-    weldx.core
-    weldx.geometry
-    weldx.measurement
-    weldx.transformations
-    weldx.util
-    weldx.types
-    weldx.visualization
-    weldx.welding
+    constants
+    core
+    geometry
+    measurement
+    transformations
+    util
+    types
+    visualization
+    welding
+
+**Classes**
+
+.. autosummary::
+    :toctree: _autosummary
+    :caption: Classes API reference
+    :recursive:
+
+    ArcSegment
+    CoordinateSystemManager
+    Geometry
+    GmawProcess
+    LineSegment
+    MathematicalExpression
+    TimeSeries
+    LocalCoordinateSystem
+    Profile
+    Q_
+    Shape
+    SpatialData
+    Trace
+    WeldxFile
+
+
+**Functions**
+
+.. autosummary::
+    :toctree: _autosummary
+
+    get_groove
 
 
 **ASDF modules**
@@ -28,7 +60,7 @@ API
     :template: module-template.rst
     :recursive:
 
-    weldx.asdf.extension
-    weldx.asdf.util
-    weldx.asdf.validators
+    asdf.extension
+    asdf.util
+    asdf.validators
 
