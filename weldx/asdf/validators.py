@@ -1,3 +1,4 @@
+"""ASDF-validators for weldx internal types."""
 import re
 from typing import Any, Callable, Dict, Iterator, List, Mapping, OrderedDict, Union
 
@@ -111,9 +112,8 @@ def _compare(_int, exp_string):
     The interval can be open, in that there is no number left or right of the ":"
     symbol.
 
-    Examples:
-    ---------
-
+    Examples
+    --------
     _int = 5
     exp_string = "5"
     -> True
@@ -390,8 +390,8 @@ def _custom_shape_validator(dict_test: Dict[str, Any], dict_expected: Dict[str, 
     """Validate dimensions which are stored in two dictionaries dict_test and
     dict_expected.
 
-    Syntax for the dict_expected:
-    -----------------------------
+    Syntax for the dict_expected
+    ----------------------------
     Items with arrays with each value having the following Syntax:
     1)  3 : an integer indicates a fix dimension for the same item in dict_test
     2)  "~", ":" or None : this string indicates a single dimension of arbitrary length.
@@ -413,7 +413,7 @@ def _custom_shape_validator(dict_test: Dict[str, Any], dict_expected: Dict[str, 
     dict_expected:
         dictionary with the expected values
 
-    raises
+    Raises
     ------
     ValueError:
         when dict_expected does violate against the Syntax rules
