@@ -1,3 +1,4 @@
+"""ASDF-extensions for weldx internal types."""
 # Licensed under a 3-clause BSD style license - see LICENSE
 # -*- coding: utf-8 -*-
 
